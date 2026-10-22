@@ -1,0 +1,22 @@
+import tensorflow as tf
+import numpy as np
+
+X = np.linspace(-2, 2, 100).reshape(-1, 1).astype("float32")
+y = 3 * X + 2
+
+optimizers = [
+    ("SGD", tf.keras.optimizers.SGD(0.05)),
+    ("Momentum", tf.keras.optimizers.SGD(0.05, momentum=0.9)),
+    ("Adam", tf.keras.optimizers.Adam(0.05))
+]
+
+for name, optimizer in optimizers:
+    model = tf.keras.Sequential([
+        tf.keras.layers.Input(shape=(1,)),
+        tf.keras.layers.Dense(1)
+    ])
+
+    model.compile(optimizer=optimizer, loss="mse")
+    model.fit(X, y, epochs=30, verbose=0)
+
+    print(name, "Loss:", model.evaluate(X, y, verbose=0))
