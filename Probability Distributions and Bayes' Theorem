@@ -1,0 +1,13 @@
+from scipy.stats import binom, norm
+
+print("Binomial Probability:", binom.pmf(3, 5, 0.5))
+print("Normal Probability:", norm.cdf(1))
+
+p_disease = 0.01
+sensitivity = 0.95
+specificity = 0.90
+
+p_positive = sensitivity * p_disease + (1 - specificity) * (1 - p_disease)
+result = sensitivity * p_disease / p_positive
+
+print("Bayes Result:", result)
