@@ -1,0 +1,12 @@
+import numpy as np
+
+p = np.array([0.7, 0.3])
+q = np.array([0.6, 0.4])
+
+entropy = -np.sum(p * np.log(p))
+cross_entropy = -np.sum(p * np.log(q))
+kl = np.sum(p * np.log(p / q))
+
+print("Entropy:", entropy)
+print("Cross Entropy:", cross_entropy)
+print("KL Divergence:", kl)
